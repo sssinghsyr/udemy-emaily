@@ -23,7 +23,7 @@ module.exports = app => {
   app.get("/auth/google/callback", passport.authenticate("google"));
 
   app.get("/api/logout", (req, res) => {
-    console.out(req.user.emailId,' logged out');
+    console.log(req.user.emailId,' logged out');
     req.logout();
     res.send(req.user);
   });
