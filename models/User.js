@@ -6,7 +6,9 @@ const Schema = mongoose.Schema;
 // Creating schema for mongodb
 const userSchema = new Schema({
   googleId: String,
-  emailId: String
+  emailId: String,
+  displayName: String,
+  profilePic: String
 });
 
 // Creating a collections or table in mongoDb

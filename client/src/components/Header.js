@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import "../css/profile-pic.css";
 
 class Header extends Component {
+  renderUserDropDownContent() {
+    return (
+      <li>
+        <a href="/api/logout">Logoutt</a>
+      </li>
+    );
+  }
+
   renderLoginContent() {
-    //console.log(this.props.auth);
     switch (this.props.auth) {
       case null:
         return "Loading...";
@@ -17,9 +25,22 @@ class Header extends Component {
       default:
         //return "Hello " + this.props.auth.emailId;
         return (
-          <li>
-            <a href="/api/logout">Logout</a>
-          </li>
+          <div>
+            <li>
+              <a href="/surveys">Dashboard</a>
+            </li>
+            <li>
+              <a href="/surveys/new">New Survey</a>
+            </li>
+            <li>
+              <img
+                className="img_circle"
+                src={this.props.auth.profilePic}
+                alt="Avatar"
+              />
+            </li>
+            {this.renderUserDropDownContent()}
+          </div>
         );
     }
   }
@@ -36,7 +57,9 @@ class Header extends Component {
           >
             Emaily
           </Link>
-          <ul className="right">{this.renderLoginContent()}</ul>
+          <ul className="right hide-on-med-and-down">
+            {this.renderLoginContent()}
+          </ul>
         </div>
       </nav>
     );
