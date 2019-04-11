@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "../css/profile-pic.css";
+import Payments from "./Payments.js";
 
 class Header extends Component {
   renderUserDropDownContent() {
     return (
       <li>
-        <a href="/api/logout">Logoutt</a>
+        <a href="/api/logout">Logout</a>
       </li>
     );
   }
@@ -24,24 +25,27 @@ class Header extends Component {
         );
       default:
         //return "Hello " + this.props.auth.emailId;
-        return (
-          <div>
-            <li>
-              <a href="/surveys">Dashboard</a>
-            </li>
-            <li>
-              <a href="/surveys/new">New Survey</a>
-            </li>
-            <li>
-              <img
-                className="img_circle"
-                src={this.props.auth.profilePic}
-                alt="Avatar"
-              />
-            </li>
-            {this.renderUserDropDownContent()}
-          </div>
-        );
+        return [
+          <li key="1">
+            <Payments />
+          </li>,
+          <li key="2">
+            <Link to="/surveys">Dashboard</Link>
+          </li>,
+          <li key="3">
+            <Link to="/surveys/new">New Survey</Link>
+          </li>,
+          <li key="4">
+            <img
+              className="img_circle"
+              src={this.props.auth.profilePic}
+              alt="Avatar"
+            />
+          </li>,
+          <li key="5">
+            <a href="/api/logout">Logout</a>
+          </li>
+        ];
     }
   }
 
